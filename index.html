@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>برای روژان ✨</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 15%, #dcecff 0%, transparent 30%),
+        radial-gradient(circle at 90% 85%, #f8e0f0 0%, transparent 32%),
+        linear-gradient(145deg, #f8fbff, #f7f1fa);
+      color: #343442;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 540px;
+      text-align: center;
+    }
+
+    /* صفحه اول */
+
+    .intro {
+      animation: appear 1s ease;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.7);
+      color: #77768a;
+      font-size: 13px;
+      margin-bottom: 14px;
+      box-shadow: 0 5px 20px rgba(80,70,100,0.06);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 43px;
+      color: #4e536f;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin: 13px 0 35px;
+      color: #777688;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* جعبه هدیه */
+
+    .gift-area {
+      position: relative;
+      width: 220px;
+      height: 210px;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.35s ease;
+    }
+
+    .gift-area:hover {
+      transform: translateY(-8px);
+    }
+
+    .shadow {
+      position: absolute;
+      bottom: 9px;
+      left: 28px;
+      width: 165px;
+      height: 22px;
+      background: rgba(70,60,90,0.13);
+      border-radius: 50%;
+      filter: blur(7px);
+    }
+
+    .box {
+      position: absolute;
+      width: 155px;
+      height: 105px;
+      left: 32px;
+      bottom: 30px;
+      border-radius: 8px 8px 13px 13px;
+      background: linear-gradient(145deg, #8f9fd4, #737fb9);
+      box-shadow: 0 16px 28px rgba(65,70,120,0.2);
+    }
+
+    .box::after {
+      content: "";
+      position: absolute;
+      width: 25px;
+      height: 105px;
+      left: 65px;
+      top: 0;
+      background: #f1d28b;
+    }
+
+    .lid {
+      position: absolute;
+      width: 175px;
+      height: 29px;
+      left: 22px;
+      bottom: 120px;
+      border-radius: 8px;
+      background: #8491c8;
+      z-index: 3;
+      box-shadow: 0 7px 10px rgba(60,60,100,0.12);
+    }
+
+    .bow {
+      position: absolute;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: #f1d28b;
+      left: 72px;
+      top: -16px;
+      z-index: 5;
+    }
+
+    .bow::before,
+    .bow::after {
+      content: "";
+      position: absolute;
+      width: 53px;
+      height: 28px;
+      border: 7px solid #f1d28b;
+      top: -7px;
+    }
+
+    .bow::before {
+      right: 13px;
+      border-radius: 50% 50% 0 50%;
+      transform: rotate(28deg);
+    }
+
+    .bow::after {
+      left: 13px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-28deg);
+    }
+
+    .click-text {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      font-size: 13px;
+      color: #8a8795;
+    }
+
+    /* پیام */
+
+    .message {
+      display: none;
+      animation: cardIn 0.85s ease forwards;
+    }
+
+    .card {
+      position: relative;
+      background: rgba(255,255,255,0.9);
+      border-radius: 28px;
+      padding: 34px 27px 29px;
+      box-shadow:
+        0 25px 70px rgba(70,65,100,0.14),
+        0 3px 10px rgba(70,65,100,0.04);
+      border: 1px solid rgba(120,120,160,0.13);
+      backdrop-filter: blur(12px);
+    }
+
+    .top-decoration {
+      font-size: 31px;
+      margin-bottom: 4px;
+    }
+
+    .card h2 {
+      margin: 0 0 23px;
+      color: #515775;
+      font-size: 29px;
+    }
+
+    .message-text {
+      text-align: right;
+      font-size: 15.5px;
+      line-height: 2.25;
+      color: #555461;
+    }
+
+    .separator {
+      width: 55px;
+      height: 3px;
+      border-radius: 5px;
+      background: #d7bd78;
+      margin: 23px auto 20px;
+    }
+
+    .ending {
+      font-size: 16px;
+      line-height: 2;
+      color: #68627a;
+      font-weight: bold;
+    }
+
+    .footer {
+      margin-top: 17px;
+      color: #aaa5b1;
+      font-size: 11px;
+    }
+
+    /* ذرات شناور */
+
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      font-size: 15px;
+      opacity: 0;
+      animation: floatUp 5s linear forwards;
+      z-index: 20;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) rotate(0deg);
+      }
+
+      15% {
+        opacity: 0.85;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-110vh) rotate(360deg);
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      body {
+        padding: 17px;
+      }
+
+      h1 {
+        font-size: 37px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        margin-bottom: 28px;
+      }
+
+      .card {
+        padding: 28px 20px 24px;
+      }
+
+      .card h2 {
+        font-size: 25px;
+      }
+
+      .message-text {
+        font-size: 14.5px;
+        line-height: 2.2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- صفحه شروع -->
+
+    <div class="intro" id="intro">
+
+      <div class="eyebrow">
+        یه پیام کوچیک برای یه روز خاص ✨
+      </div>
+
+      <h1>روژان</h1>
+
+      <div class="subtitle">
+        یه چیزی اینجا منتظرته...<br>
+        فقط باید کشفش کنی 🎁
+      </div>
+
+      <div class="gift-area" onclick="openGift()">
+
+        <div class="shadow"></div>
+
+        <div class="box">
+          <div class="lid"></div>
+          <div class="bow"></div>
+        </div>
+
+        <div class="click-text">
+          روی کادو بزن :)
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- صفحه پیام -->
+
+    <div class="message" id="message">
+
+      <div class="card">
+
+        <div class="top-decoration">
+          ✨🌷✨
+        </div>
+
+        <h2>روژان، تولدت مبارک 🎂</h2>
+
+        <div class="message-text">
+
+          امیدوارم امسال برات شروع یه سال خوب و پر از اتفاقای قشنگ باشه.
+
+          <br>
+
+          امیدوارم توی دانشگاه و مسیر زندگی،
+          به چیزایی که براشون تلاش می‌کنی برسی
+          و هر روز یه قدم به هدفایی که داری نزدیک‌تر بشی.
+
+          <br>
+
+          امیدوارم این سال برات پر از تجربه‌های خوب،
+          آدمای خوب و کلی لحظه‌ای باشه که آخرش
+          وقتی بهشون نگاه می‌کنی، بگی ارزششو داشت.
+
+          <br>
+
+          و امیدوارم توی مسیر کاری هم،
+          چه در تدریس زبان و چه در مشاوره کنکور،
+          نتیجه‌ی زحمتایی که می‌کشی رو ببینی
+          و هر روز بیشتر از قبل پیشرفت کنی.
+
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="ending">
+          بهترین اتفاق‌ها برات رقم بخوره
+          و هر جا که هستی، هر روز یه قدم جلوتر از دیروزت باشی. 🌷
+          <br>
+          تولدت مبارک روژان ✨
+        </div>
+
+        <div class="footer">
+          امیدوارم سال پیش روت، سال خوبی باشه.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    function openGift() {
+
+      document.getElementById("intro").style.display = "none";
+
+      document.getElementById("message").style.display = "block";
+
+      createParticles();
+
+    }
+
+
+    function createParticles() {
+
+      const symbols = ["✨", "🌷", "⭐", "💫", "✦"];
+
+      for (let i = 0; i < 28; i++) {
+
+        const particle = document.createElement("div");
+
+        particle.className = "particle";
+
+        particle.innerText =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
+        particle.style.left =
+          Math.random() * 100 + "vw";
+
+        particle.style.bottom =
+          (-20 - Math.random() * 20) + "px";
+
+        particle.style.fontSize =
+          (11 + Math.random() * 13) + "px";
+
+        particle.style.animationDuration =
+          (3.5 + Math.random() * 3) + "s";
+
+        particle.style.animationDelay =
+          Math.random() * 1.2 + "s";
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 7000);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
